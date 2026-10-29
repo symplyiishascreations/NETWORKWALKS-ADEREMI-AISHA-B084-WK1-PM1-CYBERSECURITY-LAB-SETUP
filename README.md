@@ -64,7 +64,7 @@ It can be used for activities such as:
 
 ---
 
-## 🏗️ Lab Architecture
+## Lab Architecture
 
 ![](1-screenshot-title-image.png)
 
@@ -73,21 +73,21 @@ Additional target machines can be added to the same virtual network in future pr
 
 ---
 
-## ⚙️ Lab Configuration
+## Lab Configuration
 
-| 🧩 Component       | ⚙️ Configuration   |
-| ------------------ | ------------------  |
-| 🖥️ Host OS         | Windows 11 Pro      |
-| 🧠 Host RAM        | 8 GB               |
-| ⚡ Processor       | Intel Core i5      |
-| 🧰 Hypervisor      | VirtualBox 7.2.6   |
-| 🐉 Security OS     | Kali Linux 2026.2  |
-| 🧠 Kali RAM        | 2048 MB            |
-| 🌐 Virtual Network | NAT Network        |
-| 📡 Network Address | 10.0.0.0/24        |
-| 🐧 Kali IP Address | 10.0.0.2/24        |
-| 🚪 Default Gateway | 10.0.0.1           |
-| 🌍 DNS Server      | 8.8.8.8            |
+| Component       | Configuration      |
+| --------------- | ------------------ |
+| Host OS         | Windows 11 Pro     |
+| Host RAM        | 8 GB               |
+| Processor       | Intel Core i5      |
+| Hypervisor      | VirtualBox 7.2.6   |
+| Security OS     | Kali Linux 2026.2  |
+| Kali RAM        | 2048 MB            |
+| Virtual Network | NAT Network        |
+| Network Address | 10.0.0.0/24        |
+| Kali IP Address | 10.0.0.2/24        |
+| Default Gateway | 10.0.0.1           |
+| DNS Server      | 8.8.8.8            |
 
 ---
 
@@ -185,14 +185,14 @@ If a future exercise changes or damages the VM configuration, the machine can be
 
 # Lab Verification
 
-| ✅ Test                        | 🧾 Command                      | 🎯 Expected Result              |
-| ----------------------------- | ------------------------------- | ------------------------------- |
-| 🌐 Check IP address           | `ip a`                          | Correct Kali IP displayed       |
-| 📡 Test gateway               | `ping 10.0.0.1`                 | Successful replies              |
-| 🌍 Test Internet connectivity | `ping 8.8.8.8`                  | Successful replies              |
-| 🔎 Test DNS resolution        | `nslookup networkwalks.com`     | Domain resolves                 |
-| 🧰 Verify Nmap                | `nmap --version`                | Nmap version displayed          |
-| 🔄 Verify snapshot            | Restore snapshot and run `ip a` | Baseline configuration restored |
+| Test                       | Command                         | Expected Result                 |
+| -------------------------- | ------------------------------- | ------------------------------- |
+| Check IP address           | `ip a`                          | Correct Kali IP displayed       |
+| Test gateway               | `ping 10.0.0.1`                 | Successful replies              |
+| Test Internet connectivity | `ping 8.8.8.8`                  | Successful replies              |
+| Test DNS resolution        | `nslookup networkwalks.com`     | Domain resolves                 |
+| Verify Nmap                | `nmap --version`                | Nmap version displayed          |
+| Verify snapshot            | Restore snapshot and run `ip a` | Baseline configuration restored |
 
 ### Example Results
 
@@ -211,9 +211,7 @@ DNS:
 
 # Problems Encountered & Solutions
 
-Documenting problems is an important part of the project.
-
-## Problem 1. Internet Connectivity After Static IP Configuration
+## Problem: Internet Connectivity After Static IP Configuration
 
 After manually configuring the IPv4 settings, Internet connectivity may fail depending on the Kali/NetworkManager configuration.
 
@@ -221,28 +219,11 @@ One workaround used during this lab was:
 
 ```bash
 sudo nmcli connection modify "Wired connection 1" ipv4.dad-timeout 0
+sudo nmcli connection down "Wired connection 1"
+sudo nmcli connection up "Wired connection 1"
 ```
 
 The network connection was then restarted/rebooted and connectivity was tested again.
-
-> **Important:** Network interface and connection names may differ between systems. Students should first identify their actual connection name before running an `nmcli` command.
-
----
-
-## Problem 2. VirtualBox VT-x / Virtualization Error
-
-The VM initially failed to start because hardware virtualization was disabled in the system firmware/BIOS.
-
-The issue was resolved by:
-
-1. Restarting the computer.
-2. Entering BIOS/UEFI settings.
-3. Enabling Intel VT-x / hardware virtualization.
-4. Saving the configuration.
-5. Restarting the computer.
-6. Starting the Kali VM again.
-
-After enabling virtualization, the VM started successfully.
 
 ---
 
@@ -296,10 +277,10 @@ This laboratory is intended strictly for education purposes only.
 
 # Author
 
-**Aderemi Aisha**\
+**Aderemi Aisha**
 Cybersecurity Professional B084
 
-LinkedIn: [https://www.linkedin.com/in/waqaskarim/](https://www.linkedin.com/in/waqaskarim/)
+LinkedIn: [www.linkedin.com/in/symplyiisha](www.linkedin.com/in/symplyiisha)
 
 ---
 
