@@ -27,7 +27,6 @@ This project focuses on setting up a **virtual cybersecurity and penetration-tes
 
 ---
 
-
 ## Objectives
 
 The main objectives I achieved in this project were to:
@@ -58,7 +57,7 @@ The lab provides an isolated and controlled environment for cybersecurity learni
 
 ## Lab Architecture
 
-[](vm page.png)
+![](vm-page.png)
 
 ---
 
@@ -106,6 +105,10 @@ IPv4 Prefix:  10.0.0.0/24
 DHCP:         Enabled
 IPv6:         Disabled
 
+![](network-settings.png)
+
+![](NAT-network-configuration.png)
+
 A **NAT Network** was selected because multiple virtual machines connected to the same NAT Network can communicate with one another while also having outbound network connectivity. This will allow future attacker and target VMs to communicate within the lab.
 
 ---
@@ -127,7 +130,7 @@ The VM was allocated:
 RAM: 2048 MB
 ```
 
-A shared folder was also configured for transferring required files between the host operating system and the Kali VM.
+![](kali-linux.png)
 
 ---
 
@@ -170,8 +173,11 @@ sudo nmcli connection down "Wired connection 1"
 sudo nmcli connection up "Wired connection 1"
 ```
 
+![](network-connection-fix.png)
+
 After this, the network worked fine and I made a web search.
 
+![](network-confirmation.png)
 
 ---
 
@@ -206,12 +212,6 @@ This provides a known-good recovery point for future cybersecurity exercises.
 ### 5. Documentation
 
 I learned that documenting commands, configuration, screenshots, problems, and solutions is an important part of a professional cybersecurity project.
-
----
-
-# Security & Ethical Use
-
-This laboratory is intended strictly for education purposes only.
 
 ---
 
