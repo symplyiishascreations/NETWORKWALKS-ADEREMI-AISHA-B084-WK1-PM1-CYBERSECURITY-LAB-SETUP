@@ -58,7 +58,7 @@ The lab provides an isolated and controlled environment for cybersecurity learni
 
 ## Lab Architecture
 
-
+[](vm page.png)
 
 ---
 
