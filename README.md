@@ -23,36 +23,28 @@
 
 ## Project Overview
 
-This project focuses on setting up a **virtual cybersecurity and penetration-testing laboratory** using VirtualBox and Kali Linux.
-
-The purpose of the lab is to create a controlled environment where cybersecurity tools, network scanning, reconnaissance, vulnerability assessment, and other security-testing activities can be performed safely and repeatedly.
-
-The lab is configured on a private virtual network so that additional machines can be added later and used as targets for authorized security testing.
+This project focuses on setting up a **virtual cybersecurity and penetration-testing laboratory** using VirtualBox and Kali Linux. The purpose of the lab is to create a controlled environment where cybersecurity tools, network scanning, reconnaissance, vulnerability assessment, and other security-testing activities can be performed safely and repeatedly. The lab is configured on a private virtual network so that additional machines can be added later and used as targets for authorized security testing.
 
 ---
 
 
 ## Objectives
 
-The main objectives of this project are to:
+The main objectives I achieved in this project were to:
 
-- Install and configure VirtualBox.
-- Install/import Kali Linux as a virtual machine.
+- Import Kali Linux as a virtual machine.
 - Create a private **NAT Network** for the cybersecurity lab.
 - Configure network connectivity for Kali Linux.
 - Assign a consistent IP address to the Kali VM.
 - Verify network connectivity and DNS resolution.
 - Take a clean VM snapshot for recovery.
 - Document the complete setup process.
-- Prepare the environment for future cybersecurity projects.
 
 ---
 
 ## Purpose of the Lab
 
-The lab provides an isolated and controlled environment for cybersecurity learning and authorized security testing.
-
-It can be used for activities such as:
+The lab provides an isolated and controlled environment for cybersecurity learning and authorized security testing. It can be used for activities such as:
 
 - Network reconnaissance
 - Port scanning
@@ -65,8 +57,6 @@ It can be used for activities such as:
 ---
 
 ## Lab Architecture
-
-![](1-screenshot-title-image.png)
 
 ---
 
@@ -114,19 +104,13 @@ IPv4 Prefix:  10.0.0.0/24
 DHCP:         Enabled
 IPv6:         Disabled
 
-![](2-screenshot-network-settings-1.png)
-
-A **NAT Network** was selected because multiple virtual machines connected to the same NAT Network can communicate with one another while also having outbound network connectivity.
-
-This will allow future attacker and target VMs to communicate within the lab.
+A **NAT Network** was selected because multiple virtual machines connected to the same NAT Network can communicate with one another while also having outbound network connectivity. This will allow future attacker and target VMs to communicate within the lab.
 
 ---
 
 ## Step 4. Import Kali Linux
 
-The Kali Linux virtual machine was downloaded from the official Kali Linux website and imported into VirtualBox.
-
-The VM network adapter was configured as follows:
+The Kali Linux virtual machine was downloaded from the official Kali Linux website and imported into VirtualBox. The VM network adapter was configured as follows:
 
 ```text
 Adapter 1
@@ -140,7 +124,7 @@ The VM was allocated:
 ```text
 RAM: 2048 MB
 ```
-![](3-screenshot-kali-linux.png)
+
 A shared folder was also configured for transferring required files between the host operating system and the Kali VM.
 
 ---
@@ -149,8 +133,6 @@ A shared folder was also configured for transferring required files between the 
 
 The Kali Linux network configuration was checked and configured with a consistent IPv4 address.
 
-Example configuration:
-
 ```text
 IP Address: 10.0.0.2
 Subnet Mask: 255.255.255.0
@@ -158,61 +140,27 @@ Gateway: 10.0.0.1
 DNS: 8.8.8.8
 ```
 
-A consistent IP address makes it easier to document the lab and reference the Kali machine in future exercises.
-
-![](4-screenshot-kali-network-settings.png)
-
 ---
 
 ## Step 6. Create a Clean VM Snapshot
 
 After completing the initial configuration, a VirtualBox snapshot was created.
 
-Example snapshot name:
-
-```text
-Clean Kali - Network Setup
-```
-
-The snapshot represents the clean baseline of the laboratory.
-
-If a future exercise changes or damages the VM configuration, the machine can be restored to this baseline.
-
 ---
 
 # Lab Verification
 
-| Test                       | Command                         | Expected Result                 |
+| Test                       | Command                         | Result                          |
 | -------------------------- | ------------------------------- | ------------------------------- |
-| Check IP address           | `ip a`                          | Correct Kali IP displayed       |
+| Check IP address           | `ip a`                          | 10.0.0.2 displayed              |
 | Test gateway               | `ping 10.0.0.1`                 | Successful replies              |
 | Test Internet connectivity | `ping 8.8.8.8`                  | Successful replies              |
-| Test DNS resolution        | `nslookup networkwalks.com`     | Domain resolves                 |
-| Verify Nmap                | `nmap --version`                | Nmap version displayed          |
-| Verify snapshot            | Restore snapshot and run `ip a` | Baseline configuration restored |
 
-### Example Results
+# Problem Encountered and Solution
 
-```text
-IP Address:
-10.0.0.2/24
+## Internet Connectivity After Static IP Configuration
 
-Gateway:
-10.0.0.1
-
-DNS:
-8.8.8.8
-```
-
----
-
-# Problems Encountered & Solutions
-
-## Problem: Internet Connectivity After Static IP Configuration
-
-After manually configuring the IPv4 settings, Internet connectivity may fail depending on the Kali/NetworkManager configuration.
-
-One workaround used during this lab was:
+After manually configuring the IPv4 settings, Internet connectivity failed. The workaround I used during this lab was:
 
 ```bash
 sudo nmcli connection modify "Wired connection 1" ipv4.dad-timeout 0
@@ -220,7 +168,8 @@ sudo nmcli connection down "Wired connection 1"
 sudo nmcli connection up "Wired connection 1"
 ```
 
-The network connection was then restarted/rebooted and connectivity was tested again.
+After this, the network worked fine and I made a web search.
+
 
 ---
 
